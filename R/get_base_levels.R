@@ -60,7 +60,7 @@ get_base_levels <- function(target) {
 #' @export
 #' 
 #' @examples
-#' get_id("Australia", typ = "locations")
+#' get_id("Australia", type = "locations")
 #' 
 get_id <- function(name, type, search = TRUE) {
   
