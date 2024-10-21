@@ -6,3 +6,4 @@ scratchpad/
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^\.github$
