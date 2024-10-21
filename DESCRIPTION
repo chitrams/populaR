@@ -1,6 +1,6 @@
 Package: populaR
 Title: World Population Data from the UN
-Version: 0.0.0.1000
+Version: 0.0.0.1001
 Authors@R: 
     c(
         person("Chitra", "Saraswati", , "chitra.m.saraswati@gmail.com", role = c("aut", "cre")),
