@@ -45,3 +45,35 @@ get_base_levels <- function(target) {
 
   return(response_data)
 }
+
+#' IDs of indicators
+#' 
+#' Get numeric IDs of indicators and locations for the WPP API
+#' 
+#' @param name Name of the variable to search for
+#' @param type One of "locations" or "Indicators", which dataset to search
+#' @param search Whether to perform simple search/matching. Defaults to TRUE
+#' 
+#' @return `tibble` containing only the matching records. Column `id` is the numeric
+#' id which will be needed downstream
+#' 
+#' @export
+#' 
+#' @examples
+#' get_id("Australia", typ = "locations")
+#' 
+get_id <- function(name, type, search = TRUE) {
+  
+  search_dataset <- get_base_levels(type)
+
+  if (type == "Indicators") {
+    search_dataset <- search_dataset[, c("id", "name", "shortName", "description")]
+  }
+
+  if (!search)
+    return (search_dataset[search_dataset$name == name,])
+  
+  else {
+    return(search_dataset[grep(name, search_dataset$name, ignore.case = TRUE),])
+  }
+}
