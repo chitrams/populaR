@@ -1,0 +1,7 @@
+---
+title: "Data sources for this package"
+
+---
+
+- Instructions about the API [here](https://population.un.org/dataportal/about/dataapi)
+- Data portal API: https://population.un.org/dataportalapi/index.html
