@@ -31,12 +31,10 @@ devtools::install_github("chitrams/populaR")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+First you have to get the numeric ID of a location
 
 ```{r example}
 library(populaR)
-
-# First you have to get the numeric ID of a location
 get_id("Australia", type = "locations")
 ```
 

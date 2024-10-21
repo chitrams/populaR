@@ -23,13 +23,12 @@ devtools::install_github("chitrams/populaR")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+First you have to get the numeric ID of a location
 
 ``` r
 library(populaR)
-
-# First you have to get the numeric ID of a location
 get_id("Australia", type = "locations")
+#> Iterating ■■■ 5% | ETA: 29sIterating ■■■■■■■■■■■■■■■■■■■■■ 67% | ETA: 1s
 #> # A tibble: 5 × 6
 #>      id name                                                 iso3  iso2  longitude latitude
 #>   <int> <chr>                                                <chr> <chr>     <dbl>    <dbl>
