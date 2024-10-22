@@ -1,7 +1,7 @@
 # base levels
 
     Code
-      get_base_levels("locations", .progress = FALSE)
+      base_locations
     Output
       # A tibble: 298 x 6
             id name                iso3  iso2  longitude latitude
@@ -21,7 +21,7 @@
 ---
 
     Code
-      get_base_levels("Indicators", .progress = FALSE)
+      base_Indicators
     Output
       # A tibble: 64 x 33
             id name         shortName description displayName dimAge dimSex dimVariant
