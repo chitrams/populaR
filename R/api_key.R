@@ -10,5 +10,6 @@ check_wpp_api_key <- function() {
 }
 
 get_wpp_api_key <- function() {
+  check_wpp_api_key()
   Sys.getenv("WPP_API_KEY")
 }
