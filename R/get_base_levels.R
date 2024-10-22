@@ -4,6 +4,7 @@
 #' querying from the WPP API
 #' 
 #' @param target String, one of "Indicators" or "locations"
+#' @param .progress Boolean, whether to show progress bars for query progress. Default TRUE
 #' @return `tibble` containing a wide range of information about the requested endpoint
 #' @export
 #' 
@@ -11,7 +12,7 @@
 #' get_base_levels("Indicators")
 #' get_base_levels("locations")
 #' 
-get_base_levels <- function(target) {
+get_base_levels <- function(target, .progress = TRUE) {
 
   allowed_targets <- c("Indicators", "locations")
   if (!target %in% c("Indicators", "locations")) {
@@ -27,7 +28,9 @@ get_base_levels <- function(target) {
       next_req = httr2::iterate_with_offset("pageNumber", 
       resp_pages = function(resp) { 
         httr2::resp_body_json(resp, simplifyVector = TRUE)$pages 
-      })
+        }
+      ),
+      progress = .progress
     )
   
     if (length(response) != httr2::resp_body_json(response[[1]])$pages) {
@@ -53,6 +56,7 @@ get_base_levels <- function(target) {
 #' @param name Name of the variable to search for
 #' @param type One of "locations" or "Indicators", which dataset to search
 #' @param search Whether to perform simple search/matching. Defaults to TRUE
+#' @param .progress Boolean, whether to show progress bars for query progress. Default TRUE
 #' 
 #' @return `tibble` containing only the matching records. Column `id` is the numeric
 #' id which will be needed downstream
@@ -62,9 +66,9 @@ get_base_levels <- function(target) {
 #' @examples
 #' get_id("Australia", type = "locations")
 #' 
-get_id <- function(name, type, search = TRUE) {
+get_id <- function(name, type, search = TRUE, .progress = TRUE) {
   
-  search_dataset <- get_base_levels(type)
+  search_dataset <- get_base_levels(type, .progress = .progress)
 
   if (type == "Indicators") {
     search_dataset <- search_dataset[, c("id", "name", "shortName", "description")]
