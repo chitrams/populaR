@@ -4,7 +4,7 @@
 \alias{get_id}
 \title{IDs of indicators}
 \usage{
-get_id(name, type, search = TRUE)
+get_id(name, type, search = TRUE, .progress = TRUE)
 }
 \arguments{
 \item{name}{Name of the variable to search for}
@@ -12,6 +12,8 @@ get_id(name, type, search = TRUE)
 \item{type}{One of "locations" or "Indicators", which dataset to search}
 
 \item{search}{Whether to perform simple search/matching. Defaults to TRUE}
+
+\item{.progress}{Boolean, whether to show progress bars for query progress. Default TRUE}
 }
 \value{
 \code{tibble} containing only the matching records. Column \code{id} is the numeric
@@ -21,6 +23,6 @@ id which will be needed downstream
 Get numeric IDs of indicators and locations for the WPP API
 }
 \examples{
-get_id("Australia", typ = "locations")
+get_id("Australia", type = "locations")
 
 }

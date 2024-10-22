@@ -4,10 +4,12 @@
 \alias{get_base_levels}
 \title{Get parameter inputs for population data API}
 \usage{
-get_base_levels(target)
+get_base_levels(target, .progress = TRUE)
 }
 \arguments{
 \item{target}{String, one of "Indicators" or "locations"}
+
+\item{.progress}{Boolean, whether to show progress bars for query progress. Default TRUE}
 }
 \value{
 \code{tibble} containing a wide range of information about the requested endpoint
