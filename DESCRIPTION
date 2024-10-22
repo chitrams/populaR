@@ -4,10 +4,10 @@ Version: 0.0.0.1003
 Authors@R: 
     c(
         person("Chitra", "Saraswati", , "chitra.m.saraswati@gmail.com", role = c("aut", "cre")),
-        person("Janith", "Wanniarachchi", "janith.wanniarachchi@monash.edu", role = "aut"),
-        person("James", "Goldie", "", role = "aut"),
-        person("Jayani", "Lakshika", "jayani.lakshika@monash.edu", role = "auth"),
-        person("Michael", "Lydeamore", "michael.lydeamore@monash.edu", role = "aut")
+        person("Janith", "Wanniarachchi", ,"janith.wanniarachchi@monash.edu", role = "aut"),
+        person("James", "Goldie", ,"me@jamesgoldie.dev", role = "aut"),
+        person("Jayani", "Lakshika", ,"jayani.lakshika@monash.edu", role = "auth"),
+        person("Michael", "Lydeamore", ,"michael.lydeamore@monash.edu", role = "aut")
     )
 Description: Pulls data from the UN's World Population API, pre-bakes some commonly used datasets
 License: MIT + file LICENSE
@@ -17,3 +17,4 @@ RoxygenNote: 7.3.2
 Imports: 
     dplyr,
     httr2
+URL: http://www.michaellydeamore.com/populaR/
