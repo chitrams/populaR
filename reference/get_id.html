@@ -36,7 +36,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_id</span><span class="op">(</span><span class="va">name</span>, <span class="va">type</span>, search <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_id</span><span class="op">(</span><span class="va">name</span>, <span class="va">type</span>, search <span class="op">=</span> <span class="cn">TRUE</span>, .progress <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -54,6 +54,10 @@
 <dt id="arg-search">search<a class="anchor" aria-label="anchor" href="#arg-search"></a></dt>
 <dd><p>Whether to perform simple search/matching. Defaults to TRUE</p></dd>
 
+
+<dt id="arg--progress">.progress<a class="anchor" aria-label="anchor" href="#arg--progress"></a></dt>
+<dd><p>Boolean, whether to show progress bars for query progress. Default TRUE</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -63,7 +67,7 @@ id which will be needed downstream</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_id</span><span class="op">(</span><span class="st">"Australia"</span>, typ <span class="op">=</span> <span class="st">"locations"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_id</span><span class="op">(</span><span class="st">"Australia"</span>, type <span class="op">=</span> <span class="st">"locations"</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in req_perform(req, path = get_path(i)):</span> Failed to perform HTTP request.</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_memory()`:</span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> error:0A000152:SSL routines::unsafe legacy renegotiation disabled</span>
