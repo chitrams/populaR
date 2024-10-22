@@ -47,8 +47,6 @@ get_indicator_data <- function(indicator_id, location_id, start_year = 1950, end
     cli::cli_abort("`end_year` {end_year} is less than `start_year` {start_year}")
   }
 
-  check_wpp_api_key()
-
   base_url <- "https://population.un.org/dataportalapi/api/v1/data" 
 
   response <- httr2::request(base_url) |> 
@@ -62,7 +60,7 @@ get_indicator_data <- function(indicator_id, location_id, start_year = 1950, end
       pagingInHeader = "false",
       format = "json"
     ) |>
-    httr2::req_auth_bearer_token(Sys.getenv("WPP_API_KEY")) |>
+    httr2::req_auth_bearer_token(get_wpp_api_key()) |>
     httr2::req_cache(path = tempfile()) |>
     httr2::req_perform_iterative(
       next_req = httr2::iterate_with_offset(
