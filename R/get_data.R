@@ -35,7 +35,7 @@
 #' @examples
 #' aus_id <- get_id("Australia", type = "locations", search = FALSE, .progress = FALSE)
 #' age_id <- get_id("Population by 5-year age groups and sex", type = "Indicators", search = FALSE, .progress = FALSE)
-#' get_data(indicator_id = age_id$id, location_id = aus_id$id)
+#' get_indicator_data(indicator_id = age_id$id, location_id = aus_id$id)
 #' 
 #' @export
 get_indicator_data <- function(indicator_id, location_id, start_year = 1950, end_year = 2100, .progress = TRUE) {
@@ -46,6 +46,8 @@ get_indicator_data <- function(indicator_id, location_id, start_year = 1950, end
   if (end_year < start_year) {
     cli::cli_abort("`end_year` {end_year} is less than `start_year` {start_year}")
   }
+
+  check_wpp_api_key()
 
   base_url <- "https://population.un.org/dataportalapi/api/v1/data" 
 
