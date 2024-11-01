@@ -23,18 +23,39 @@ devtools::install_github("chitrams/populaR")
 
 ## Example
 
-First you have to get the numeric ID of a location
+First you have to get the numeric ID of a location. You can do this
+through the `get_id` function with `type = "locations"`. If you know the
+exact wording, set `search = FALSE` to speed up the query.
 
 ``` r
 library(populaR)
-get_id("Australia", type = "locations")
-#> Iterating ■■■ 5% | ETA: 29sIterating ■■■■■■■■■■■■■■■■■■■■■ 67% | ETA: 1s
+get_id("Australia", type = "locations", .progress = FALSE)
 #> # A tibble: 5 × 6
-#>      id name                                                 iso3  iso2  longitude latitude
-#>   <int> <chr>                                                <chr> <chr>     <dbl>    <dbl>
-#> 1    36 Australia                                            AUS   AU         134.    -25.3
-#> 2   927 Australia/New Zealand                                ANZ   ZL          NA      NA  
-#> 3  1834 Australia/New Zealand                                ANZ   ZL          NA      NA  
-#> 4  1835 Oceania (excluding Australia and New Zealand)        OCA   OZ          NA      NA  
-#> 5  5502 Europe, Northern America, Australia, and New Zealand SDG   SD          NA      NA
+#>      id name                                      iso3  iso2  longitude latitude
+#>   <int> <chr>                                     <chr> <chr>     <dbl>    <dbl>
+#> 1    36 Australia                                 AUS   AU         134.    -25.3
+#> 2   927 Australia/New Zealand                     ANZ   ZL          NA      NA  
+#> 3  1834 Australia/New Zealand                     ANZ   ZL          NA      NA  
+#> 4  1835 Oceania (excluding Australia and New Zea… OCA   OZ          NA      NA  
+#> 5  5502 Europe, Northern America, Australia, and… SDG   SD          NA      NA
 ```
+
+Then, you need the numeric ID of the indicator. You can search for this
+in the same way
+
+``` r
+get_id("Population by 5-year age groups and sex", type = "Indicators", .progress = FALSE)
+#> # A tibble: 1 × 4
+#>      id name                                    shortName       description     
+#>   <int> <chr>                                   <chr>           <chr>           
+#> 1    46 Population by 5-year age groups and sex PopByAge5AndSex Annual populati…
+```
+
+Common indicators include:
+
+| Indicator ID | Description                             |
+|-------------:|:----------------------------------------|
+|           46 | Population by 5-year age groups and sex |
+
+By default, the package does not clean API columns, and so will return
+quite a lot of information.

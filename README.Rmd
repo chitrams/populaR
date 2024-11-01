@@ -31,10 +31,28 @@ devtools::install_github("chitrams/populaR")
 
 ## Example
 
-First you have to get the numeric ID of a location
+First you have to get the numeric ID of a location. You can do this through the `get_id` function with `type = "locations"`. If you know the exact wording, set `search = FALSE` to speed up the query.
 
 ```{r example}
 library(populaR)
-get_id("Australia", type = "locations")
+get_id("Australia", type = "locations", .progress = FALSE)
 ```
 
+Then, you need the numeric ID of the indicator. You can search for this in the same way
+
+```{r example-indicator}
+get_id("Population by 5-year age groups and sex", type = "Indicators", .progress = FALSE)
+```
+
+Common indicators include:
+
+```{r common-indicators, echo = FALSE}
+knitr::kable(
+  tibble::tribble(
+    ~`Indicator ID`, ~Description,
+    46, "Population by 5-year age groups and sex"
+  )
+)
+```
+
+By default, the package does not clean API columns, and so will return quite a lot of information.
