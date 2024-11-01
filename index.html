@@ -71,19 +71,37 @@
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>First you have to get the numeric ID of a location</p>
+<p>First you have to get the numeric ID of a location. You can do this through the <code>get_id</code> function with <code>type = "locations"</code>. If you know the exact wording, set <code>search = FALSE</code> to speed up the query.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.michaellydeamore.com/populaR/">populaR</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/get_id.html">get_id</a></span><span class="op">(</span><span class="st">"Australia"</span>, type <span class="op">=</span> <span class="st">"locations"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Iterating ■■■ 5% | ETA: 29sIterating ■■■■■■■■■■■■■■■■■■■■■ 67% | ETA: 1s</span></span>
+<span><span class="fu"><a href="reference/get_id.html">get_id</a></span><span class="op">(</span><span class="st">"Australia"</span>, type <span class="op">=</span> <span class="st">"locations"</span>, .progress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 5 × 6</span></span>
-<span><span class="co">#&gt;      id name                                                 iso3  iso2  longitude latitude</span></span>
-<span><span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;                                                &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1    36 Australia                                            AUS   AU         134.    -25.3</span></span>
-<span><span class="co">#&gt; 2   927 Australia/New Zealand                                ANZ   ZL          NA      NA  </span></span>
-<span><span class="co">#&gt; 3  1834 Australia/New Zealand                                ANZ   ZL          NA      NA  </span></span>
-<span><span class="co">#&gt; 4  1835 Oceania (excluding Australia and New Zealand)        OCA   OZ          NA      NA  </span></span>
-<span><span class="co">#&gt; 5  5502 Europe, Northern America, Australia, and New Zealand SDG   SD          NA      NA</span></span></code></pre></div>
+<span><span class="co">#&gt;      id name                                      iso3  iso2  longitude latitude</span></span>
+<span><span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;                                     &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1    36 Australia                                 AUS   AU         134.    -25.3</span></span>
+<span><span class="co">#&gt; 2   927 Australia/New Zealand                     ANZ   ZL          NA      NA  </span></span>
+<span><span class="co">#&gt; 3  1834 Australia/New Zealand                     ANZ   ZL          NA      NA  </span></span>
+<span><span class="co">#&gt; 4  1835 Oceania (excluding Australia and New Zea… OCA   OZ          NA      NA  </span></span>
+<span><span class="co">#&gt; 5  5502 Europe, Northern America, Australia, and… SDG   SD          NA      NA</span></span></code></pre></div>
+<p>Then, you need the numeric ID of the indicator. You can search for this in the same way</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/get_id.html">get_id</a></span><span class="op">(</span><span class="st">"Population by 5-year age groups and sex"</span>, type <span class="op">=</span> <span class="st">"Indicators"</span>, .progress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 4</span></span>
+<span><span class="co">#&gt;      id name                                    shortName       description     </span></span>
+<span><span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;                                   &lt;chr&gt;           &lt;chr&gt;           </span></span>
+<span><span class="co">#&gt; 1    46 Population by 5-year age groups and sex PopByAge5AndSex Annual populati…</span></span></code></pre></div>
+<p>Common indicators include:</p>
+<table class="table">
+<thead><tr class="header">
+<th align="right">Indicator ID</th>
+<th align="left">Description</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="right">46</td>
+<td align="left">Population by 5-year age groups and sex</td>
+</tr></tbody>
+</table>
+<p>By default, the package does not clean API columns, and so will return quite a lot of information.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
