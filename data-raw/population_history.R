@@ -1,5 +1,3 @@
-## code to prepare `population_history` dataset goes here
-
 # Data from the API that has total population by
 # * age
 # * sex
@@ -25,11 +23,10 @@ all_country_age_sex_fiveyr <- lapply(cli::cli_progress_along(1:nrow(all_countrie
   if (file.exists(paste0("data-raw/age_sex_fiveyr/age_sex_fiveyr_", all_countries$name[i])))
     return (NA)
   
-  population_age_sex_fiveyr <- get_age_data(location_id = all_countries$id[i], age_bracket = 5, by_sex = TRUE, start_year = 1950, end_year = 2024) 
-  
+  population_age_sex_fiveyr <- get_age_data(location_id = all_countries$id[i], age_bracket = 5, by_sex = TRUE, start_year = 2023, end_year = 2023) 
   readr::write_csv(
     x = population_age_sex_fiveyr,
-    file = paste0("data-raw/age_sex_fiveyr/age_sex_fiveyr_", all_countries$name[i])
+    file = paste0("data-raw/age_sex_fiveyr/age_sex_fiveyr_", all_countries$name[i], ".csv")
   )
 
   population_age_sex_fiveyr
@@ -37,8 +34,23 @@ all_country_age_sex_fiveyr <- lapply(cli::cli_progress_along(1:nrow(all_countrie
 
 csvs_to_load <- list.files("data-raw/age_sex_fiveyr/", full.names = TRUE)
 
-population_age_sex_fiveyr <- lapply(csvs_to_load, function(s) {
-  readr::read_csv(s)
+wpp_age_sex_fiveyr <- lapply(csvs_to_load, function(s) {
+  readr::read_csv(s) |>
+    dplyr::mutate(
+      sexId = factor(sexId)
+    )
 }) |> dplyr::bind_rows()
 
-usethis::use_data(population_age_sex_fiveyr, overwrite = TRUE)
+usethis::use_data(wpp_age_sex_fiveyr, overwrite = TRUE)
+
+wpp_age_fiveyr <- wpp_age_sex_fiveyr |>
+  dplyr::group_by(locationId, location, year, ageStart, ageEnd) |>
+  dplyr::summarise(population = sum(population))
+
+usethis::use_data(wpp_age_fiveyr, overwrite = TRUE)
+
+wpp_sex_fiveyr <- wpp_age_sex_fiveyr |>
+  dplyr::group_by(locationId, location, year, sexId) |>
+  dplyr::summarise(population = sum(population))
+
+usethis::use_data(wpp_sex_fiveyr, overwrite = TRUE)
