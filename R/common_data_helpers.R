@@ -14,7 +14,7 @@
 #' 
 #' @examples
 #' aus_id <- get_id("Australia", type = "locations", search = FALSE, .progress = FALSE)
-#' get_age_data(aus_id, age_bracket = 5, by_sex = TRUE)
+#' get_age_data(aus_id$id, age_bracket = 5, start_year = 2023, end_year = 2023, by_sex = TRUE)
 #' 
 #' @export
 get_age_data <- function(location_id, age_bracket, by_sex, start_year = 1950, end_year = 2100, .progress = TRUE) {

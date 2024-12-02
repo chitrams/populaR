@@ -35,6 +35,6 @@ Gets age data in either 1- or 5- year age brackets, potentially segregated by se
 }
 \examples{
 aus_id <- get_id("Australia", type = "locations", search = FALSE, .progress = FALSE)
-get_age_data(aus_id, age_bracket = 5, by_sex = TRUE)
+get_age_data(aus_id$id, age_bracket = 5, start_year = 2023, end_year = 2023, by_sex = TRUE)
 
 }
