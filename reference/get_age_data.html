@@ -83,7 +83,7 @@ cleaner format than the raw API call.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">aus_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_id.html">get_id</a></span><span class="op">(</span><span class="st">"Australia"</span>, type <span class="op">=</span> <span class="st">"locations"</span>, search <span class="op">=</span> <span class="cn">FALSE</span>, .progress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">get_age_data</span><span class="op">(</span><span class="va">aus_id</span>, age_bracket <span class="op">=</span> <span class="fl">5</span>, by_sex <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">get_age_data</span><span class="op">(</span><span class="va">aus_id</span><span class="op">$</span><span class="va">id</span>, age_bracket <span class="op">=</span> <span class="fl">5</span>, start_year <span class="op">=</span> <span class="fl">2023</span>, end_year <span class="op">=</span> <span class="fl">2023</span>, by_sex <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in check_wpp_api_key():</span> No API key detected. Set using `set_wpp_key_key()` or inside `.Renviron`</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
