@@ -25,8 +25,8 @@ get_age_data <- function(location_id, age_bracket, by_sex, start_year = 1950, en
 
   indicator_id <- get_id(search_string, type = "Indicators", search = FALSE, .progress = FALSE)
 
-  indicator_data <- get_indicator_data(indicator_id = indicator_id$id, location_id = location_id$id, start_year = 1950, end_year = 2024) |>
-      dplyr::select(locationId, location, year = timeLabel, sexId, ageStart, ageEnd) |>
+  indicator_data <- get_indicator_data(indicator_id = indicator_id$id, location_id = location_id, start_year = start_year, end_year = end_year) |>
+      dplyr::select(locationId, location, year = timeLabel, sexId, ageStart, ageEnd, population = value) |>
       dplyr::mutate(
         locationId = factor(locationId)
       )
@@ -39,7 +39,21 @@ get_age_data <- function(location_id, age_bracket, by_sex, start_year = 1950, en
 
 }
 
+#' Filter WPP age data by country
+#' 
+#' Filters WPP age data to a country
+#' 
+#' @param .data A tibble containing WPP age data
+#' @param country Name of the country
+#' @param location_column Name of the location column, unquoted. Default `location`.
+#' 
+#' @return A tibble containing WPP age data for the specified country
 #' @export
-filter_country <- function(.data, country) {
-  dplyr::filter(.data, location == country)
+filter_country <- function(.data, country, location_column = location) {
+  location_column <- rlang::enquo(location_column)
+  if (!rlang::quo_name(location_column) %in% colnames(.data) ) {
+  cli::cli_abort("No column named {.field {rlang::quo_name(location_column)}} found in input data")
+  }
+
+  dplyr::filter(.data, !!location_column == country)
 }
