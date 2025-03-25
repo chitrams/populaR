@@ -13,3 +13,10 @@ test_that("Filter Country", {
     0
   )
 })
+
+test_that("Filter Year", {
+  expect_equal(
+    wpp_age_sex_fiveyr |> dplyr::filter(year == 2023),
+    wpp_age_sex_fiveyr |> filter_year(2023)
+  )
+})

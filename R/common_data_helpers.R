@@ -57,3 +57,22 @@ filter_country <- function(.data, country, location_column = location) {
 
   dplyr::filter(.data, !!location_column == country)
 }
+
+#' Filter WPP age data by year
+#' 
+#' Filters WPP age data to a year
+#' 
+#' @param .data A tibble containing WPP age data
+#' @param target_year Numeric year that you want to filter on
+#' @param location_column Name of the location column, unquoted. Default `year`.
+#' 
+#' @return A tibble containing WPP age data for the specified country
+#' @export
+filter_year <- function(.data, target_year, location_column = year) {
+  location_column <- rlang::enquo(location_column)
+  if (!rlang::quo_name(location_column) %in% colnames(.data) ) {
+  cli::cli_abort("No column named {.field {rlang::quo_name(location_column)}} found in input data")
+  }
+
+  dplyr::filter(.data, !!location_column == target_year)
+}
