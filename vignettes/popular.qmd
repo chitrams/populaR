@@ -1,0 +1,121 @@
+---
+title: "popular"
+vignette: >
+  %\VignetteIndexEntry{popular}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
+---
+
+```{r}
+#| label: setup
+library(populaR)
+library(ggplot2)
+library(dplyr)
+```
+
+This vignette shows how to:
+
+* Set up your API key
+* Query data from the WPP API
+* Filter and summarise population indicators.
+
+## Setting up your API key
+
+To query the WPP API, you require an API key. You can get this by emailing `population at un dot org` (replace the words with the symbols) with the subject "Data Portal Token Request".
+
+It might take a few days for the team to get back to you with your API key.
+
+Once you have your key, you can set your API key using:
+
+* `popular::set_wpp_api_key(YOUR_KEY_HERE)`: This will set your key for the session
+* Via the `.Renviron` file. The easiest way to access this is with `usethis::edit_r_environ()`.
+
+The `.Renviron` file is a key-value pair, so just add a line that says
+
+`WPP_API_KEY=YOUR_KEY_HERE`
+
+Don't include any spaces before or after the `=` sign.
+
+Restart your R session. You can test if the key is working by typing `get_wpp_api_key()`. If this function doesn't return an error, then you are good to go.
+
+## Querying data from the WPP API
+
+The WPP API operates based on _indicators_ and _locations_. These are typically numeric identifiers. Indicators can be thought of as datasets. There is a wide range of datasets reported by the API, and you can see the list using
+
+```{r}
+get_base_levels("Indicators")
+```
+
+If you are working on age-related data, then you probably want this indicator:
+
+```{r}
+age_sex_id <- get_id("Population by 5-year age groups and sex", type = "Indicators", search = FALSE, .progress = FALSE)
+
+age_sex_id
+```
+
+By default, the `get_id` function will perform a fuzzy search for the string you pass in, so if you're not sure of the indicator, have a guess and see what comes back.
+
+The other piece of information you require is a _location_. This could be a country, or wider region. For example,
+
+```{r}
+australia <- get_id("Australia", type = "locations")
+
+australia
+```
+
+If I know the country I want exactly, I can disable search using
+
+```{r}
+australia <- get_id("Australia", type = "locations", search = FALSE)
+
+australia
+```
+
+Finally, I can collect the indicator data from the API using `get_indicator_data`:
+
+```{r}
+#| eval: false
+aus_data <- get_indicator_data(indicator_id = age_sex_id$id, location_id = australia$id, start_year = 2020, end_year = 2024)
+
+aus_data
+```
+
+```{r}
+#| echo: false
+
+aus_data <- wpp_age_sex_fiveyr |> filter_country("Australia") |> dplyr::filter(year >= 2020, year <= 2024)
+
+aus_data
+```
+
+## Working with data from the WPP API
+
+Let's start by creating a simple time series plot of the population, stratified by sex, over time.
+
+First, notice that the WPP API returns three levels for sexId:
+
+```{r}
+aus_data |>
+  pull(sexId) |>
+  unique()
+```
+
+We will need to filter out the sum.
+
+```{r}
+aus_data |>
+  filter(sexId != "Both sexes") |>
+  group_by(year, sexId) |>
+  summarise(population = sum(population)) |>
+  ggplot(aes(x = year, y = population, colour = sexId)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Year", y = "Population", colour = "Sex")
+```
+
+We can see that there is consistently a higher proportion of females than males in Australia!

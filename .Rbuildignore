@@ -8,3 +8,7 @@ scratchpad/
 ^pkgdown$
 ^\.github$
 ^README\.Rmd$
+^vignettes/\.quarto$
+^vignettes/*_files$
+^doc$
+^Meta$

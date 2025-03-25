@@ -20,9 +20,12 @@ Imports:
     httr2
 URL: http://www.michaellydeamore.com/populaR/
 Suggests: 
+    ggplot2,
     testthat (>= 3.0.0),
     vcr (>= 0.6.0)
 Config/testthat/edition: 3
 Depends: 
     R (>= 3.5)
 LazyData: true
+VignetteBuilder:
+    quarto
