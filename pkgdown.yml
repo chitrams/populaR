@@ -1,8 +1,9 @@
 pandoc: 3.1.11
 pkgdown: 2.1.1
 pkgdown_sha: ~
-articles: {}
-last_built: 2025-03-25T05:03Z
+articles:
+  popular: popular.html
+last_built: 2025-03-25T11:30Z
 urls:
   reference: http://www.michaellydeamore.com/populaR/reference
   article: http://www.michaellydeamore.com/populaR/articles
