@@ -21,6 +21,7 @@ Imports:
 URL: http://www.michaellydeamore.com/populaR/
 Suggests: 
     ggplot2,
+    quarto,
     testthat (>= 3.0.0),
     vcr (>= 0.6.0)
 Config/testthat/edition: 3
