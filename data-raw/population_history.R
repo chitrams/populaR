@@ -20,10 +20,10 @@ all_countries <- get_id("", type = "locations") |>
 ### Use with extreme caution
 
 all_country_age_sex_fiveyr <- lapply(cli::cli_progress_along(1:nrow(all_countries)), function(i) {
-  if (file.exists(paste0("data-raw/age_sex_fiveyr/age_sex_fiveyr_", all_countries$name[i])))
+  if (file.exists(paste0("data-raw/age_sex_fiveyr/age_sex_fiveyr_", all_countries$name[i], ".csv")))
     return (NA)
   
-  population_age_sex_fiveyr <- get_age_data(location_id = all_countries$id[i], age_bracket = 5, by_sex = TRUE, start_year = 2023, end_year = 2023) 
+  population_age_sex_fiveyr <- get_age_data(location_id = all_countries$id[i], age_bracket = 5, by_sex = TRUE, start_year = 1950, end_year = 2023) 
   readr::write_csv(
     x = population_age_sex_fiveyr,
     file = paste0("data-raw/age_sex_fiveyr/age_sex_fiveyr_", all_countries$name[i], ".csv")
