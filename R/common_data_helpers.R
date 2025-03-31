@@ -17,7 +17,7 @@ globalVariables(c(
 #' @return tibble containing location_id, age information, sex, year, in a slightly
 #' cleaner format than the raw API call.
 #' 
-#' @examples
+#' @examplesIf FALSE
 #' aus_id <- get_id("Australia", type = "locations", search = FALSE, .progress = FALSE)
 #' get_age_data(aus_id$id, age_bracket = 5, start_year = 2023, end_year = 2023, by_sex = TRUE)
 #' 

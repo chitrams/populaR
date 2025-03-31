@@ -32,7 +32,7 @@
 #' }
 #' 
 #' 
-#' @examples
+#' @examplesIf FALSE
 #' aus_id <- get_id("Australia",
 #'   type = "locations",
 #'   search = FALSE,
