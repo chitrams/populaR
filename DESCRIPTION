@@ -6,7 +6,7 @@ Authors@R:
         person("Chitra", "Saraswati", , "chitra.m.saraswati@gmail.com", role = c("aut", "cre")),
         person("Janith", "Wanniarachchi", ,"janith.wanniarachchi@monash.edu", role = "aut"),
         person("James", "Goldie", ,"me@jamesgoldie.dev", role = "aut"),
-        person("Jayani", "Lakshika", ,"jayani.lakshika@monash.edu", role = "auth"),
+        person("Jayani", "Lakshika", ,"jayani.lakshika@monash.edu", role = "aut"),
         person("Michael", "Lydeamore", ,"michael.lydeamore@monash.edu", role = "aut")
     )
 Description: Pulls data from the UN's World Population API, pre-bakes some commonly used datasets
