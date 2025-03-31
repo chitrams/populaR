@@ -34,7 +34,8 @@ cleaner format than the raw API call.
 Gets age data in either 1- or 5- year age brackets, potentially segregated by sex
 }
 \examples{
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 aus_id <- get_id("Australia", type = "locations", search = FALSE, .progress = FALSE)
 get_age_data(aus_id$id, age_bracket = 5, start_year = 2023, end_year = 2023, by_sex = TRUE)
-
+\dontshow{\}) # examplesIf}
 }
