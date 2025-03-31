@@ -1,3 +1,8 @@
+# names of data columns that are used in internal tidyselection
+globalVariables(c(
+  "locationId", "location", "timeLabel", "sexId", "ageStart", "ageEnd",
+  "value", "year"))
+
 #' Age data from the WPP API
 #' 
 #' Gets age data in either 1- or 5- year age brackets, potentially segregated by sex
