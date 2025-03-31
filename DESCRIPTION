@@ -9,7 +9,7 @@ Authors@R:
         person("Jayani", "Lakshika", ,"jayani.lakshika@monash.edu", role = "aut"),
         person("Michael", "Lydeamore", ,"michael.lydeamore@monash.edu", role = "aut")
     )
-Description: Pulls data from the UN's World Population API, pre-bakes some commonly used datasets
+Description: Pulls data from the UN's World Population API, pre-bakes some commonly used datasets.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
