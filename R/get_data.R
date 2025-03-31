@@ -32,10 +32,20 @@
 #' }
 #' 
 #' 
-#' @examples
-#' aus_id <- get_id("Australia", type = "locations", search = FALSE, .progress = FALSE)
-#' age_id <- get_id("Population by 5-year age groups and sex", type = "Indicators", search = FALSE, .progress = FALSE)
-#' get_indicator_data(indicator_id = age_id$id, location_id = aus_id$id, start_year = 2020, end_year = 2024)
+#' @examplesIf FALSE
+#' aus_id <- get_id("Australia",
+#'   type = "locations",
+#'   search = FALSE,
+#'   .progress = FALSE)
+#' age_id <- get_id("Population by 5-year age groups and sex",
+#'   type = "Indicators",
+#'   search = FALSE,
+#'   .progress = FALSE)
+#' get_indicator_data(
+#'   indicator_id = age_id$id,
+#'   location_id = aus_id$id,
+#'   start_year = 2020,
+#'   end_year = 2024)
 #' 
 #' @export
 get_indicator_data <- function(indicator_id, location_id, start_year = 1950, end_year = 2100, .progress = TRUE) {

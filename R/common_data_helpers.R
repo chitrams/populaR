@@ -1,3 +1,8 @@
+# names of data columns that are used in internal tidyselection
+globalVariables(c(
+  "locationId", "location", "timeLabel", "sexId", "ageStart", "ageEnd",
+  "value", "year"))
+
 #' Age data from the WPP API
 #' 
 #' Gets age data in either 1- or 5- year age brackets, potentially segregated by sex
@@ -12,7 +17,7 @@
 #' @return tibble containing location_id, age information, sex, year, in a slightly
 #' cleaner format than the raw API call.
 #' 
-#' @examples
+#' @examplesIf FALSE
 #' aus_id <- get_id("Australia", type = "locations", search = FALSE, .progress = FALSE)
 #' get_age_data(aus_id$id, age_bracket = 5, start_year = 2023, end_year = 2023, by_sex = TRUE)
 #' 

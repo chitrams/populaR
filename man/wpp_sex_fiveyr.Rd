@@ -5,7 +5,7 @@
 \alias{wpp_sex_fiveyr}
 \title{Five year age data, by country and sex}
 \format{
-An object of class \code{grouped_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 720 rows and 5 columns.
+An object of class \code{grouped_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 53280 rows and 5 columns.
 }
 \usage{
 wpp_sex_fiveyr

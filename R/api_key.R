@@ -1,3 +1,7 @@
+#' Set the WPP API key for this session
+#' 
+#' @param key The WPP API key to use for the rest of the session
+#' @return The result from [base::Sys.setenv()].
 #' @export
 set_wpp_api_key <- function(key) {
   Sys.setenv(WPP_API_KEY = key)
